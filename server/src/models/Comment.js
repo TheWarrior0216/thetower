@@ -1,0 +1,16 @@
+import { Schema } from "mongoose";
+
+export const CommentSchema = new Schema({
+  creatorId: { type: Schema.ObjectId, required: true, ref: 'Account' },
+  eventId: { type: Schema.ObjectId, required: true, ref: 'TheEvent' },
+  body: { type: String, minLength: 0, maxLength: 1000, required: true }
+}, {
+  timestamps: true,
+  toJSON: { virtuals: true }
+})
+CommentSchema.virtual('creator', {
+  localField: 'creatorId',
+  ref: 'Account',
+  foreignField: '_id',
+  justOne: true
+})

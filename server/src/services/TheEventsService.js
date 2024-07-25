@@ -1,3 +1,4 @@
+import { BadRequest } from "@bcwdev/auth0provider/lib/Errors.js"
 import { dbContext } from "../db/DbContext.js"
 import { logger } from "../utils/Logger.js"
 
@@ -32,6 +33,7 @@ class TheEventsService {
   async checkAuthorization(eventId, userId) {
     const theEvent = await dbContext.TheEvents.findById(eventId)
     if (theEvent.creatorId != userId) return
+    if (theEvent.isCanceled) throw new BadRequest('Sorry This Event is Cancelled')
     return theEvent
   }
 

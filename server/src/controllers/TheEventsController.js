@@ -4,6 +4,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider/lib/Auth0Provider.js";
 import { theEventsService } from "../services/TheEventsService.js";
 import { logger } from "../utils/Logger.js";
 import { ticketsService } from "../services/TicketsService.js";
+import { commentsService } from "../services/CommentsService.js";
 
 
 export class TheEventsController extends BaseController {
@@ -13,21 +14,11 @@ export class TheEventsController extends BaseController {
       .get('', this.getAllTheEvents)
       .get('/:eventId', this.getTheEventById)
       .get('/:eventId/tickets', this.getTheTicketsByEvent)
+      .get('/:eventId/comments', this.getTheEventComments)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .put('/:eventId', this.editTheEventById)
       .post('', this.createTheEvent)
       .delete('/:eventId', this.decimateTheEventById)
-  }
-  async createTheEvent(request, response, next) {
-    try {
-      const user = request.userInfo
-      const eventData = request.body
-      eventData.creatorId = user.id
-      const theEvent = await theEventsService.createTheEvent(eventData)
-      response.send(theEvent)
-    } catch (error) {
-      next(error)
-    }
   }
 
   async getAllTheEvents(request, response, next) {
@@ -42,10 +33,8 @@ export class TheEventsController extends BaseController {
   async getTheEventById(request, response, next) {
     try {
       const eventId = request.params.eventId
-
       const TheEvent = await theEventsService.getTheEventById(eventId)
       response.send(TheEvent)
-
     } catch (error) {
       next(error)
     }
@@ -53,10 +42,29 @@ export class TheEventsController extends BaseController {
   async getTheTicketsByEvent(request, response, next) {
     try {
       const eventId = request.params.eventId
-
       const TheEvent = await ticketsService.getTheTicketsByEvent(eventId)
       response.send(TheEvent)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getTheEventComments(request, response, next) {
+    try {
+      const eventId = request.params.eventId
+      const commments = await commentsService.getTheEventComments(eventId)
+      response.send(commments)
 
+    } catch (error) {
+      next(error)
+    }
+  }
+  async createTheEvent(request, response, next) {
+    try {
+      const user = request.userInfo
+      const eventData = request.body
+      eventData.creatorId = user.id
+      const theEvent = await theEventsService.createTheEvent(eventData)
+      response.send(theEvent)
     } catch (error) {
       next(error)
     }

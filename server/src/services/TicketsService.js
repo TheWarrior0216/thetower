@@ -1,9 +1,10 @@
+import { BadRequest, Forbidden } from "@bcwdev/auth0provider/lib/Errors.js"
 import { dbContext } from "../db/DbContext.js"
 
 class TicketsService {
   async decimateTicket(userId, ticketId) {
     const ticket = await dbContext.Tickets.findById(ticketId)
-    if (ticket.accountId != userId) return
+    if (ticket.accountId != userId) throw new Forbidden('Whatcha Doin Mate?? This aint Yours')
     await ticket.deleteOne()
     return 'You Decimated A ticket'
   }
