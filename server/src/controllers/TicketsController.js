@@ -8,6 +8,7 @@ export class TicketsController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createPost)
+      .delete('/:ticketId', this.decimateTicket)
 
   }
   async createPost(request, response, next) {
@@ -16,6 +17,16 @@ export class TicketsController extends BaseController {
       const postData = request.body
       postData.accountId = user.id
       const ticket = await ticketsService.createPost(postData)
+      response.send(ticket)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async decimateTicket(request, response, next) {
+    try {
+      const userId = request.userInfo.id
+      const ticketId = request.params.ticketId
+      const ticket = await ticketsService.decimateTicket(userId, ticketId)
       response.send(ticket)
     } catch (error) {
       next(error)

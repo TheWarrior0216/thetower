@@ -16,16 +16,16 @@ class TheEventsService {
     return theEvent
   }
   async getTheEventById(eventID) {
-    const theEvent = await dbContext.TheEvents.findById(eventID).populate('creator')
+    const theEvent = await dbContext.TheEvents.findById(eventID).populate('creator ticketCount')
     return theEvent
   }
   async getAllTheEvents() {
-    const theEvent = await dbContext.TheEvents.find().populate('creator')
+    const theEvent = await dbContext.TheEvents.find().populate('creator ticketCount')
     return (theEvent)
   }
   async createTheEvent(eventData) {
     const theEvent = await dbContext.TheEvents.create(eventData)
-    await theEvent.populate('creator')
+    await theEvent.populate('creator ticketCount')
     return theEvent
   }
 
