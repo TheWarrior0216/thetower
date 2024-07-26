@@ -15,6 +15,7 @@ import Navbar from './components/Navbar.vue'
   <footer class="bg-dark text-light">
     Made with 💜 by Seth @ CodeWorks
   </footer>
+  <CreateTheEvent />
 </template>
 
 <style lang="scss">

@@ -6,6 +6,7 @@ defineProps({theEvent: TheEvent})
 
 
 <template>
+  <!-- TODO add rputer link to navigate to event details page -->
   <div>
 
     <section class="card justify-content-end selectable" :style="{backgroundImage: `url(${theEvent?.coverImg})`}" >
@@ -25,7 +26,7 @@ defineProps({theEvent: TheEvent})
 <style lang="scss" scoped>
 .card{
 height: 33vh;
-background-image: v-bind("theEvent.coverImg");
+background-image: v-bind('theEvent.coverImg');
 background-size: cover;
 background-position: center;
 }

@@ -16,6 +16,7 @@ async function getEvents(){
     Pop.error(error);
   }
 }
+
 const categoryFilter = ref('all')
 const categories = ['all','concert', 'convention','sport','digital' ]
 const theEvents = computed(()=> {
@@ -47,7 +48,9 @@ const theEvents = computed(()=> {
     <div class="col-md-5 p-3 pt-1 border">
 <h3 class="mdi mdi-plus "> Create Events of your own</h3>
 <p class="ps-3 fw-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eligendi placeat et sequi doloremque voluptas praesentium nesciunt fugit architecto eum!</p>
-<p class="text-success mdi mdi-plus selectable"> Create Here</p>
+<!-- TODO have this open a modal with your form in it -->
+ <!-- TODO reference createAlbum method for router push -->
+<p data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-success mdi mdi-plus selectable"> Create Here</p>
     </div>
     <div class="col-12">
       <h2 class="m-4 mt-5 ">Explore Categories</h2>
@@ -76,6 +79,7 @@ const theEvents = computed(()=> {
 
 <style scoped lang="scss">
 .backgroundImage{
+  // FIXME makes sure this looks good on mobile
   background-image: url('https://1.bp.blogspot.com/-4vf9OVikxC8/XFUltIbso7I/AAAAAAAABz0/JVXPiIhLnbA3tfwA29H1pqJlbXvX39fEwCKgBGAs/w0/snow-mountainer-night-sky-stars-scenery-31-4K.jpg');
   height: 60dvh;
   background-position: center bottom -150px;
