@@ -8,18 +8,15 @@ defineProps({theEvent: TheEvent})
 <template>
   <!-- TODO add rputer link to navigate to event details page -->
   <div>
-
-    <section class="card justify-content-end selectable" :style="{backgroundImage: `url(${theEvent?.coverImg})`}" >
-      <div>
-
-    <div class="card-body textStyle">
-      <h4 class="card-title">{{ theEvent.name }}</h4>
-      <p class="card-text">{{theEvent.startDate.toLocaleString()}}</p>
+  <section class="card justify-content-end selectable" :style="{backgroundImage: `url(${theEvent?.coverImg})`}">
+    <div>
+      <div class="card-body textStyle">
+        <h4 class="card-title">{{ theEvent.name }}</h4>
+        <p class="card-text">{{theEvent.startDate.toLocaleString()}}</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </div>
-
 </template>
 
 

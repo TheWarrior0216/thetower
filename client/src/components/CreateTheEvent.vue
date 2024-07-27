@@ -19,12 +19,23 @@ const editableEventData = ref({
 async function submitTheEvent(){
   try {
   await eventsService.submitTheEvent(editableEventData.value)
+  resetForm()
   }
   catch (error){
     Pop.error(error);
   }
 }
-
+function resetForm(){
+editableEventData.value = {
+name: '',
+  location: '',
+  type: '',
+  startDate: '',
+  capacity: '',
+  coverImg: '',
+  description: '',
+  }
+}
 </script>
 
 
@@ -85,7 +96,7 @@ async function submitTheEvent(){
             placeholder="Leave a Description here" id="floatingTextarea"></textarea>
             <label for="floatingTextarea">Description </label>
           </div>
-          <button type="submit"  class="btn btn-primary">Submit Event</button>
+          <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Submit Event</button>
         </form>
       </div>
     </div>
