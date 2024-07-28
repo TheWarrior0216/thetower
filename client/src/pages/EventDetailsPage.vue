@@ -80,8 +80,9 @@ async function grabTicket(){
             </div>
           </div>
           <div class="bg-info mt-5 text-dark p-2 rounded">
-            <h2 v-for="ticket in tickets" :key="ticket.id"><span> <img class="pfp" :src="ticket.profile.picture"
-                  :alt="ticket.profile.name"></span> {{ticket.profile.name}}</h2>
+            <h3>People Going:</h3>
+            <h5 v-for="ticket in tickets" :key="ticket.id"><span> <img class="pfp" :src="ticket.profile.picture"
+                  :alt="ticket.profile.name"></span> {{ticket.profile.name}}</h5>
           </div>
         </div>
       </div>
@@ -102,7 +103,7 @@ async function grabTicket(){
  
 }
 .pfp{
-  height: 10dvh;
+  height: 7dvh;
   border-radius: 50%;
   aspect-ratio: 1/1;
 }

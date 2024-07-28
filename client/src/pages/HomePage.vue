@@ -7,6 +7,7 @@ import { AppState } from "../AppState.js";
 
 onMounted(()=>{
   getEvents()
+  AppState.obtainedEvent = null
 })
 async function getEvents(){
   try {
