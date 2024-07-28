@@ -6,17 +6,18 @@ defineProps({theEvent: TheEvent})
 
 
 <template>
-  <!-- TODO add rputer link to navigate to event details page -->
-  <div>
-  <section class="card justify-content-end selectable" :style="{backgroundImage: `url(${theEvent?.coverImg})`}">
+  <RouterLink :to="{name: 'TheEventDetails', params: {eventId: theEvent.id}}">
     <div>
-      <div class="card-body textStyle">
-        <h4 class="card-title">{{ theEvent.name }}</h4>
-        <p class="card-text">{{theEvent.startDate.toLocaleString()}}</p>
-      </div>
+      <section class="card justify-content-end selectable" :style="{backgroundImage: `url(${theEvent?.coverImg})`}">
+        <div>
+          <div class="card-body textStyle">
+            <h4 class="card-title">{{ theEvent.name }}</h4>
+            <p class="card-text">{{theEvent.startDate.toLocaleString()}}</p>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
-</div>
+  </RouterLink>
 </template>
 
 

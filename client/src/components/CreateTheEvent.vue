@@ -3,7 +3,7 @@ import { ref } from "vue";
 import Pop from "../utils/Pop.js";
 import { eventsService } from "../services/EventsService.js";
 
-const categories = ['all','concert', 'convention','sport','digital' ]
+const categories = ['All','Concert', 'Convention','Sport','Digital' ]
 
 
 const editableEventData = ref({

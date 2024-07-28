@@ -17,10 +17,10 @@ async function getEvents(){
   }
 }
 
-const categoryFilter = ref('all')
-const categories = ['all','concert', 'convention','sport','digital' ]
+const categoryFilter = ref('All')
+const categories = ['All','Concert', 'Convention','Sport','Digital' ]
 const theEvents = computed(()=> {
-  if(categoryFilter.value == 'all'){
+  if(categoryFilter.value == 'All'){
     return AppState.theEvents
   }
   return AppState.theEvents.filter(album => album.type == categoryFilter.value)

@@ -21,8 +21,12 @@ const routes = [
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
+  },
+  {
+    path: '/eventDetails/:eventId',
+    name: 'TheEventDetails',
+    component: loadPage('EventDetailsPage'),
   }
-  //TODO add route to navigate to event details page, include an eventId parameter
 ]
 
 export const router = createRouter({

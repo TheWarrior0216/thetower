@@ -4,6 +4,12 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class EventsService {
+  async getTheEvent(eventId) {
+    AppState.obtainedEvent = null
+    const response = await api.get(`api/events/${eventId}`)
+    const newEvent = new TheEvent(response.data)
+    AppState.obtainedEvent = newEvent
+  }
   async submitTheEvent(editableEventData) {
     const response = await api.post('api/events', editableEventData)
     const newEvent = new TheEvent(response.data)
