@@ -11,9 +11,11 @@ class EventsService {
     AppState.obtainedEvent = newEvent
   }
   async submitTheEvent(editableEventData) {
+
     const response = await api.post('api/events', editableEventData)
     const newEvent = new TheEvent(response.data)
     AppState.theEvents.push(newEvent)
+    AppState.obtainedEvent = newEvent
   }
   async getEvents() {
     const response = await api.get('/api/events')

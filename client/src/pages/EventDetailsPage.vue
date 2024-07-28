@@ -54,7 +54,8 @@ async function grabTicket(){
     <div class="col-12 mt-5">
       <div class="row">
         <div class="col-md-9">
-          <h1>{{ theEvent.name }}: <span class="fs-6 bg-info text-dark rounded py-2 px-1 ms-5">{{ theEvent.type }}</span></h1>
+          <h1>{{ theEvent.name }}: <span
+              class="fs-6 bg-info text-dark rounded py-2 px-1 ms-5">{{ theEvent.type }}</span></h1>
           <h3 class="my-3">Description:</h3>
           <p>{{ theEvent.description }}</p>
           <h2 class="fw-light mdi mdi-calendar-clock-outline my-3"> Date and Time:</h2>
@@ -63,19 +64,25 @@ async function grabTicket(){
           <p class="fw-bold"> This event is at {{ theEvent.location }}</p>
         </div>
         <div class="col-md-3">
-<div class="bg-info mt-5 text-dark p-2 rounded">
-  <div class="text-center">
-    <h3>Intrested in going?</h3>
-    <p>Grab A Ticket!!</p>
-    <button @click="grabTicket()" class="btn btn-dark">Click Here!</button>
-  </div>
-  <div v-if="" class="text-end mt-3">
-   <h5> Tickets Left: {{ theEvent.capacity - theEvent.ticketCount  }} </h5>
-  </div>
-</div>
-<div  class="bg-info mt-5 text-dark p-2 rounded">
-  <h2 v-for="ticket in tickets" :key="ticket.id"><span> <img class="pfp" :src="ticket.profile.picture" :alt="ticket.profile.name"></span> {{ticket.profile.name}}</h2>
-</div>
+          <div class="bg-info mt-5 text-dark p-2 rounded">
+            <div class="text-center">
+              <h3>Intrested in going?</h3>
+              <p>Grab A Ticket!!</p>
+              <button @click="grabTicket()" class="btn btn-dark"
+                :class="{disabled:(theEvent.capacity - theEvent.ticketCount) <= 0} ">Click Here!</button>
+              <div>
+                <button v-if="(theEvent.capacity - theEvent.ticketCount) <= 0" class="btn btn-danger"
+                  :class="{disabled:(theEvent.capacity - theEvent.ticketCount) <= 0} ">Out of Room</button>
+              </div>
+            </div>
+            <div v-if=" (theEvent.capacity - theEvent.ticketCount) > 0 " class="text-end mt-3">
+              <h5> Tickets Left: {{ theEvent.capacity - theEvent.ticketCount  }} </h5>
+            </div>
+          </div>
+          <div class="bg-info mt-5 text-dark p-2 rounded">
+            <h2 v-for="ticket in tickets" :key="ticket.id"><span> <img class="pfp" :src="ticket.profile.picture"
+                  :alt="ticket.profile.name"></span> {{ticket.profile.name}}</h2>
+          </div>
         </div>
       </div>
     </div>

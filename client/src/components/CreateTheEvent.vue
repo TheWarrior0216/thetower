@@ -1,10 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import Pop from "../utils/Pop.js";
 import { eventsService } from "../services/EventsService.js";
+import { AppState } from "../AppState.js";
 
-const categories = ['All','Concert', 'Convention','Sport','Digital' ]
 
+
+
+const categories = ['Concert', 'Convention','Sport','Digital' ]
+const theEvent = computed(()=> AppState.obtainedEvent)
 
 const editableEventData = ref({
   name: '',
@@ -19,7 +23,7 @@ const editableEventData = ref({
 async function submitTheEvent(){
   try {
   await eventsService.submitTheEvent(editableEventData.value)
-  resetForm()
+  
   }
   catch (error){
     Pop.error(error);
@@ -96,7 +100,12 @@ name: '',
             placeholder="Leave a Description here" id="floatingTextarea"></textarea>
             <label for="floatingTextarea">Description </label>
           </div>
-          <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Submit Event</button>
+          <div class="text-end">
+            <RouterLink v-if="theEvent" :to="{name: 'TheEventDetails', params: {eventId: theEvent?.id}}">
+              <button @click="resetForm()" data-bs-dismiss="modal" class="btn btn-primary">Submit Event</button>
+            </RouterLink>
+            <button v-else type="submit" class="btn btn-primary">Save Information</button>
+          </div>
         </form>
       </div>
     </div>
