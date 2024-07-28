@@ -10,7 +10,7 @@ onMounted(() => {
 })
 
 function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
+  theme.value = theme.value == 'dark' 
   document.documentElement.setAttribute('data-bs-theme', theme.value)
   saveState('theme', theme.value)
 }
@@ -32,10 +32,7 @@ function toggleTheme() {
       
       <!-- LOGIN COMPONENT HERE -->
       <div>
-        <button class="btn text-light " @click="toggleTheme"
-          :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-          <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
-        </button>
+
       </div>
       <Login />
     </div>

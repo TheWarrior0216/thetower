@@ -4,6 +4,9 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class EventsService {
+  async cancelEvent(eventId) {
+    await api.delete(`api/events/${eventId}`)
+  }
   async getTheEvent(eventId) {
     AppState.obtainedEvent = null
     const response = await api.get(`api/events/${eventId}`)

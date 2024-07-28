@@ -6,7 +6,7 @@ import { api } from "./AxiosService.js"
 class TicketsService {
 
   async destroyTicket(ticketId) {
-    const index = AppState.profileTickets.findIndex(ticket => ticket.id = ticketId)
+    const index = AppState.profileTickets.findIndex(ticket => ticket.id == ticketId)
     await api.delete(`api/tickets/${ticketId}`)
     AppState.profileTickets.splice(index, 1)
     AppState.obtainedEvent.ticketCount--
