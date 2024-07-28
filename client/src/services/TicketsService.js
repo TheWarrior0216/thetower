@@ -4,6 +4,13 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class TicketsService {
+
+  async destroyTicket(ticketId) {
+    const index = AppState.profileTickets.findIndex(ticket => ticket.id = ticketId)
+    await api.delete(`api/tickets/${ticketId}`)
+    AppState.profileTickets.splice(index, 1)
+    AppState.obtainedEvent.ticketCount--
+  }
   async grabTicket(eventId) {
     const response = await api.post(`api/tickets`, eventId)
     const newTicket = new Ticket(response.data)

@@ -49,7 +49,6 @@ const theEvents = computed(()=> {
     <div class="col-md-5 p-3 pt-1 border">
 <h3 class="mdi mdi-plus "> Create Events of your own</h3>
 <p class="ps-3 fw-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eligendi placeat et sequi doloremque voluptas praesentium nesciunt fugit architecto eum!</p>
-<!-- TODO have this open a modal with your form in it -->
  <!-- TODO reference createAlbum method for router push -->
 <p data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-success mdi mdi-plus selectable"> Create Here</p>
     </div>

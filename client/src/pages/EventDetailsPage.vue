@@ -11,6 +11,7 @@ const route = useRoute()
 
 const theEvent = computed(()=> AppState.obtainedEvent)
 const tickets = computed(()=> AppState.profileTickets)
+const account = computed(()=> AppState.account)
 
 onMounted(()=>{
   getTheEvent()
@@ -42,6 +43,15 @@ async function grabTicket(){
     Pop.error(error);
   }
 }
+async function destroyTicket(){
+  try {
+    const ticketId = AppState.profileTickets.find(ticket => ticket.accountId == account.value.id)
+    await ticketsService.destroyTicket(ticketId.id )
+  }
+  catch (error){
+    Pop.error(error);
+  }
+}
 </script>
 
 
@@ -66,10 +76,15 @@ async function grabTicket(){
         <div class="col-md-3">
           <div class="bg-info mt-5 text-dark p-2 rounded">
             <div class="text-center">
-              <h3>Intrested in going?</h3>
-              <p>Grab A Ticket!!</p>
-              <button @click="grabTicket()" class="btn btn-dark"
+              <h5  v-if="tickets.find((ticket)=> ticket.accountId = account.id)">You Are Attending This Event
+                <button @click="destroyTicket()" class="btn btn-dark mt-2">Unattend</button>
+              </h5>
+              <div v-else>
+                <h3>Intrested in going?</h3>
+                <p>Grab A Ticket!!</p>
+                <button @click="grabTicket()" class="btn btn-dark"
                 :class="{disabled:(theEvent.capacity - theEvent.ticketCount) <= 0} ">Click Here!</button>
+              </div>
               <div>
                 <button v-if="(theEvent.capacity - theEvent.ticketCount) <= 0" class="btn btn-danger"
                   :class="{disabled:(theEvent.capacity - theEvent.ticketCount) <= 0} ">Out of Room</button>
