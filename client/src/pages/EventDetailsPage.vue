@@ -165,7 +165,7 @@ async function createComment(){
       </div>
     </div>
   </div>
-  <div v-if="account.id == theEvent.creatorId" class="text-center">
+  <div v-if="account?.id == theEvent.creatorId" class="text-center">
 <button @click="cancelEvent(theEvent.id)" class="btn btn-danger">
 Cancel Event
 </button>
