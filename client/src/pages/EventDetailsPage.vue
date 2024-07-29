@@ -141,7 +141,7 @@ async function createComment(){
                   <button @click="grabTicket()" class="btn btn-dark"
                 :class="{disabled:(theEvent.capacity - theEvent.ticketCount) <= 0|| theEvent.isCanceled} ">Click Here!</button>
                 </div>
-                <div v-else-if=" theEvent.isCanceled">
+                <div v-else>
                   <h3>Intrested in going?</h3>
                   <p>Login to Grab A Ticket!!</p>
                 </div>
